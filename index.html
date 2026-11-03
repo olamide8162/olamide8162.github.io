@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Olamide Fawole · Full-Stack Developer</title>
+<meta name="description" content="Olamide Fawole, full-stack developer in Lagos, Nigeria. Case studies: GymApp, Exopleen and Bracket/HQ.">
+<meta property="og:title" content="Olamide Fawole · Full-Stack Developer">
+<meta property="og:description" content="Mobile and web apps, the databases behind them, and the servers they run on.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111214'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='%23FAFAF8' text-anchor='middle'%3EOF%3C/text%3E%3C/svg%3E">
+<style>[hidden]{display:none!important}img{max-width:100%}body{margin:0}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a quiet gallery. Big name, three image-led project cards, case studies open in a panel beneath the grid. */
+:root{
+  --bg:#FAFAF8;
+  --surface:#FFFFFF;
+  --sunk:#F2F1EE;
+  --ink:#111214;
+  --ink-2:#5D6169;
+  --ink-3:#8D9199;
+  --line:#E6E5E1;
+  --accent:#D9531E;
+  --accent-soft:#D9531E14;
+  --ok:#17834A;
+  --shadow:0 1px 2px rgba(17,18,20,.04),0 8px 24px -12px rgba(17,18,20,.12);
+  --shadow-lift:0 2px 4px rgba(17,18,20,.05),0 24px 48px -20px rgba(17,18,20,.22);
+  --sans:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --code-bg:#121316; --code-ink:#E6E4DF;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0D0E10; --surface:#16181B; --sunk:#1C1E22; --ink:#F2F1EE; --ink-2:#A3A7AF; --ink-3:#757A83;
+    --line:#26292E; --accent:#FF7D4A; --accent-soft:#FF7D4A1A; --ok:#4ADE80;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6);
+    --shadow-lift:0 2px 4px rgba(0,0,0,.3),0 24px 48px -20px rgba(0,0,0,.8);
+    --code-bg:#0A0B0C;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0D0E10; --surface:#16181B; --sunk:#1C1E22; --ink:#F2F1EE; --ink-2:#A3A7AF; --ink-3:#757A83;
+  --line:#26292E; --accent:#FF7D4A; --accent-soft:#FF7D4A1A; --ok:#4ADE80;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6);
+  --shadow-lift:0 2px 4px rgba(0,0,0,.3),0 24px 48px -20px rgba(0,0,0,.8);
+  --code-bg:#0A0B0C;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;
+  padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1080px;margin:0 auto;padding-block:96px 72px;display:flex;flex-direction:column;gap:120px}
+h1,h2,h3{margin:0;text-wrap:balance;letter-spacing:-.025em;line-height:1.08;font-weight:600}
+p{margin:0;max-width:64ch}
+a{color:var(--accent)}
+code{font-family:var(--mono);font-size:.88em;background:var(--sunk);padding:1px 5px;border-radius:4px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.muted{color:var(--ink-2)}
+
+/* Hero */
+.hero{display:flex;flex-direction:column;gap:28px}
+.hero h1{font-size:clamp(3rem,9vw,6.5rem);font-weight:600;letter-spacing:-.045em;line-height:.98}
+.hero h1 span{color:var(--ink-3)}
+.hero .lede{font-size:clamp(1.15rem,2vw,1.35rem);color:var(--ink-2);max-width:40ch;line-height:1.5}
+.hero .lede b{color:var(--ink);font-weight:500}
+.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:500;font-size:.95rem;border:1px solid var(--ink);transition:transform .2s ease,box-shadow .2s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--ink-3)}
+.cta .addr{font-family:var(--mono);font-size:.82rem;color:var(--ink-3);padding-left:6px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0 0;padding:0}
+.stats div{display:flex;flex-direction:column;gap:6px;padding-top:20px;border-top:1px solid var(--line)}
+.stats dt{font-size:clamp(2rem,4vw,2.75rem);font-weight:600;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.stats dd{margin:0;color:var(--ink-2);font-size:.92rem}
+
+/* Section heads */
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.head h2{font-size:clamp(1.9rem,3.5vw,2.6rem)}
+.head p{color:var(--ink-2);max-width:44ch}
+
+/* Project cards */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{appearance:none;font:inherit;color:inherit;text-align:left;cursor:pointer;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:10px;display:flex;flex-direction:column;gap:0;box-shadow:var(--shadow);transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease,border-color .3s ease}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift)}
+.card[aria-expanded="true"]{border-color:var(--ink);box-shadow:var(--shadow-lift)}
+.visual{aspect-ratio:4/3.2;max-width:100%;border-radius:12px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
+.v-gym{background:radial-gradient(120% 90% at 30% 0%,#FFD9C2 0%,#F6B08C 45%,#E4703E 100%)}
+.v-exo{background:radial-gradient(100% 80% at 70% 10%,#1C3B2C 0%,#0B1410 60%,#060807 100%)}
+.v-br{background:#050505}
+.v-br img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
+.card-body{padding:18px 12px 12px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card-body .ttl{font-size:1.4rem;font-weight:600;letter-spacing:-.025em;line-height:1.1}
+.card-body .kind{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.card-body .line{color:var(--ink-2);font-size:.95rem;line-height:1.5}
+.card-body .win{font-size:.88rem;color:var(--ok);line-height:1.45}
+.card-body .wip{font-size:.85rem;color:var(--ink-3)}
+.card-foot{margin-top:auto;padding-top:14px;display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid var(--line)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:.74rem;padding:3px 9px;border-radius:999px;background:var(--sunk);color:var(--ink-2)}
+.more{flex:none;font-size:.85rem;font-weight:500;color:var(--ink);display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.more .arr{display:inline-block;transition:transform .25s ease}
+.card:hover .more .arr{transform:translateX(3px)}
+.card[aria-expanded="true"] .more .arr{transform:rotate(90deg)}
+
+/* Mini phone on GymApp card */
+.phone{width:170px;max-width:52%;background:#0A0A0A;border-radius:26px;padding:12px 10px 14px;border:3px solid #1d1d1d;color:#fff;font-size:9px;line-height:1.35;box-shadow:0 30px 40px -24px rgba(80,25,0,.55);transform:translateY(14%) rotate(-4deg)}
+.notch{width:50px;height:5px;border-radius:5px;background:#222;margin:0 auto 10px}
+.p-title{font-weight:600;font-size:14px;margin-bottom:8px;letter-spacing:-.02em}
+.p-card{background:#161616;border:1px solid #2a2a2a;border-radius:9px;padding:8px;margin-bottom:6px}
+.p-row{display:flex;justify-content:space-between;gap:6px}
+.p-dim{color:#8a8a8a;font-size:8px}
+.bar{height:3px;border-radius:3px;background:#2a2a2a;margin:6px 0 3px;overflow:hidden}
+.bar i{display:block;height:100%;background:#FF6B35}
+.bar.full i{background:#EAB308}
+.p-btn{display:block;text-align:center;background:#FF6B35;color:#0A0A0A;font-weight:600;border-radius:6px;padding:4px;margin-top:5px}
+.p-btn.ghost{background:transparent;color:#EAB308;border:1px solid #EAB30866}
+
+/* Exopleen call card */
+.ex-card{width:78%;background:#0d0d0d;color:#EDEDED;border-radius:12px;padding:12px;font-size:11px;display:flex;flex-direction:column;gap:7px;border:1px solid #3a1d12;box-shadow:0 0 0 1px #ff4d2e55,0 0 30px -6px #ff4d2e88}
+.ex-card .row{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.ex-card .mult{font-size:26px;font-weight:700;letter-spacing:-.03em;color:#ff6a4d}
+.ex-card .dim{color:#8a8a8a;font-size:10px}
+.ex-card .fresh{color:#34d399;text-shadow:0 0 8px #34d39988;font-family:var(--mono);font-size:10px}
+.ms{display:flex;gap:4px;flex-wrap:wrap}
+.ms span{font-family:var(--mono);font-size:9.5px;padding:2px 6px;border-radius:3px;background:#1f1f1f;color:#bbb}
+.ms span.hit{background:#22c55e22;color:#4ade80}
+.dots{display:flex;gap:10px;flex-wrap:wrap;font-family:var(--mono);font-size:10px}
+.dots i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:4px}
+
+/* Case study panels */
+.panel{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}
+.panel-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding:36px 40px 28px;border-bottom:1px solid var(--line)}
+.panel-top h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.035em}
+.panel-top p{margin-top:12px;color:var(--ink-2);font-size:1.08rem}
+.panel-top p b{color:var(--ink);font-weight:500}
+.close{appearance:none;font:inherit;cursor:pointer;flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:1.2rem;line-height:1;display:flex;align-items:center;justify-content:center}
+.close:hover{border-color:var(--ink-3)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.chips span{font-family:var(--mono);font-size:.74rem;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2)}
+.cs{display:grid;grid-template-columns:200px 1fr;gap:40px;padding:40px;border-bottom:1px solid var(--line)}
+.cs:last-child{border-bottom:0}
+.cs-side{display:flex;flex-direction:column;gap:6px}
+.cs-side h3{font-size:1.2rem}
+.cs-main{display:flex;flex-direction:column;gap:24px;min-width:0}
+.cs-main>p{color:var(--ink-2)}
+@media (prefers-reduced-motion:no-preference){
+  .panel:not([hidden]){animation:rise .45s cubic-bezier(.2,.7,.2,1)}
+  .hero>*{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+  .hero>*:nth-child(2){animation-delay:.05s}.hero>*:nth-child(3){animation-delay:.1s}.hero>*:nth-child(4){animation-delay:.15s}.hero>*:nth-child(5){animation-delay:.2s}
+}
+@keyframes rise{from{transform:translateY(12px)}to{transform:none}}
+
+.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.role{background:var(--sunk);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.role h4{margin:0;font-size:1rem;font-weight:600}
+.role .count{font-family:var(--mono);font-size:.72rem;color:var(--accent)}
+.role ul{margin:0;padding-left:16px;color:var(--ink-2);font-size:.9rem;display:grid;gap:4px}
+.deep{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.deep+.deep{padding-top:24px;border-top:1px solid var(--line)}
+.deep h4{margin:0 0 8px;font-size:1.05rem;font-weight:600}
+.deep p{color:var(--ink-2);font-size:.95rem}
+pre{margin:0;font-family:var(--mono);font-size:.76rem;line-height:1.6;background:var(--code-bg);color:var(--code-ink);padding:18px 20px;border-radius:12px;overflow-x:auto}
+pre .c{color:#7d7a74}pre .k{color:#FF9466}pre .s{color:#9BD3A7}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:540px;font-size:.9rem}
+th,td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;background:var(--sunk)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:500;width:32%}
+td{color:var(--ink-2)}td:first-child{color:var(--ink)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.tiles div{background:var(--sunk);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:4px}
+.tiles b{font-weight:600;font-size:.95rem}
+.tiles span{color:var(--ink-2);font-size:.86rem;line-height:1.5}
+.timeline{display:flex;flex-direction:column;gap:0;margin:0;padding:0;list-style:none}
+.timeline li{display:grid;grid-template-columns:110px 1fr;gap:20px;padding:14px 0;border-top:1px solid var(--line)}
+.timeline li:first-child{border-top:0;padding-top:0}
+.timeline .when{font-family:var(--mono);font-size:.78rem;color:var(--ink-3);padding-top:2px}
+.timeline b{font-weight:600;display:block}
+.timeline span.d{color:var(--ink-2);font-size:.92rem}
+.next{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 28px;margin:0;padding:0;list-style:none}
+.next li{display:flex;gap:10px;align-items:baseline;color:var(--ink-2);font-size:.95rem}
+.next li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--ink-3);transform:translateY(-2px)}
+.next li.now::before{background:var(--accent)}
+.next li.now{color:var(--ink)}
+.shot{display:block;width:100%;max-width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
+
+/* Background */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.about p{color:var(--ink-2);font-size:1.05rem}
+.extra{display:flex;flex-direction:column;gap:10px;padding-top:8px}
+
+footer{display:flex;flex-direction:column;gap:20px;padding-top:56px;border-top:1px solid var(--line)}
+footer h2{font-size:clamp(2rem,5vw,3.4rem);letter-spacing:-.04em}
+footer .fine{font-family:var(--mono);font-size:.75rem;color:var(--ink-3)}
+
+@media (max-width:960px){
+  .grid{grid-template-columns:1fr 1fr}
+  .grid .card:last-child{grid-column:1/-1}
+  .grid .card:last-child .visual{aspect-ratio:16/7}
+  .cs{grid-template-columns:1fr;gap:16px}
+  .deep,.about{grid-template-columns:1fr}
+  .roles{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .wrap{padding-block:56px 48px;gap:88px}
+  .grid{grid-template-columns:1fr}
+  .grid .card:last-child .visual{aspect-ratio:4/3.2}
+  .stats{grid-template-columns:1fr;gap:0}
+  .stats div{flex-direction:row;align-items:baseline;gap:14px;padding:14px 0}
+  .panel-top,.cs{padding:24px 20px}
+  .timeline li{grid-template-columns:1fr;gap:2px}
+  .next{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">Full-stack developer · Lagos, Nigeria</span>
+  <h1>Olamide<br><span>Fawole</span></h1>
+  <p class="lede">I build <b>full-stack products end to end</b>: mobile and web apps, the databases behind them, and the servers they run on.</p>
+  <div class="cta">
+    <a class="btn" href="mailto:osfawole27@gmail.com">Email me</a>
+    <a class="btn ghost" href="https://github.com/olamide8162" target="_blank" rel="noopener">GitHub ↗</a>
+    <span class="addr">osfawole27@gmail.com</span>
+  </div>
+  <dl class="stats">
+    <div><dt>3</dt><dd>Apps built and shipped</dd></div>
+    <div><dt>~700</dt><dd>Wallets tracked live, every 3 seconds</dd></div>
+    <div><dt>6</dt><dd>Services I run in production</dd></div>
+  </dl>
+</header>
+
+<section aria-labelledby="work-h">
+  <div class="head">
+    <h2 id="work-h">Selected work</h2>
+    <p>Open a project for the full case study, including the problems I had to solve along the way.</p>
+  </div>
+
+  <div class="grid">
+    <button class="card" id="card-gymapp" aria-expanded="false" aria-controls="gymapp" data-target="gymapp">
+      <span class="visual v-gym" aria-hidden="true">
+        <span class="phone">
+          <span class="notch" style="display:block"></span>
+          <span class="p-title" style="display:block">Classes</span>
+          <span class="p-card" style="display:block">
+            <span class="p-row"><b>HIIT Circuit</b><span class="p-dim">07:00</span></span>
+            <span class="bar" style="display:block"><i style="width:70%"></i></span>
+            <span class="p-row p-dim"><span>14 / 20 booked</span><span>6 left</span></span>
+            <span class="p-btn">Book</span>
+          </span>
+          <span class="p-card" style="display:block">
+            <span class="p-row"><b>Power Yoga</b><span class="p-dim">12:30</span></span>
+            <span class="bar full" style="display:block"><i style="width:100%"></i></span>
+            <span class="p-row p-dim"><span>16 / 16 booked</span><span>3 waiting</span></span>
+            <span class="p-btn ghost">Join waitlist</span>
+          </span>
+        </span>
+      </span>
+      <span class="card-body">
+        <span class="kind">Mobile app · 2026</span>
+        <span class="ttl">GymApp</span>
+        <span class="line">Multi-gym class booking with live seat counts, waitlists, QR check-in and a gym finder map.</span>
+        <span class="win">One gym app grown into a platform for any gym, with 3 user roles.</span>
+        <span class="wip">In progress: gym subscriptions paid in the app</span>
+        <span class="card-foot">
+          <span class="tags"><span class="tag">React Native</span><span class="tag">Supabase</span></span>
+          <span class="more">Case study <span class="arr">→</span></span>
+        </span>
+      </span>
+    </button>
+
+    <button class="card" id="card-exopleen" aria-expanded="false" aria-controls="exopleen" data-target="exopleen">
+      <span class="visual v-exo" aria-hidden="true">
+        <span class="ex-card">
+          <span class="row"><b>Example token</b><span class="fresh">3m ago</span></span>
+          <span class="row"><span class="mult">12.4x</span><span class="dim">AI score 7 / 10</span></span>
+          <span class="ms"><span class="hit">2x</span><span class="hit">5x</span><span class="hit">10x</span><span>20x</span></span>
+          <span class="dots"><span><i style="background:#22c55e"></i>9 holding</span><span><i style="background:#3b82f6"></i>3 trimmed</span><span><i style="background:#ef4444"></i>1 sold</span></span>
+        </span>
+      </span>
+      <span class="card-body">
+        <span class="kind">Web app + backend · Live since May 2026</span>
+        <span class="ttl">Exopleen</span>
+        <span class="line">Real-time tracker for ~700 crypto wallets, with push alerts and an AI scorer that learns from its misses.</span>
+        <span class="win">Running in production; database cut from 471 MB to 261 MB.</span>
+        <span class="card-foot">
+          <span class="tags"><span class="tag">React</span><span class="tag">Python</span><span class="tag">Linux</span></span>
+          <span class="more">Case study <span class="arr">→</span></span>
+        </span>
+      </span>
+    </button>
+
+    <button class="card" id="card-brackethq" aria-expanded="false" aria-controls="brackethq" data-target="brackethq">
+      <span class="visual v-br" aria-hidden="true"><img src="bracket.jpg" alt=""></span>
+      <span class="card-body">
+        <span class="kind">Web app · 2026</span>
+        <span class="ttl">Bracket/HQ</span>
+        <span class="line">Tournament platform for FC Mobile players, with four formats and brackets that update live.</span>
+        <span class="win">Brackets of up to 32 players update on every screen without a refresh.</span>
+        <span class="card-foot">
+          <span class="tags"><span class="tag">Google sign-in</span><span class="tag">SSE</span></span>
+          <span class="more">Case study <span class="arr">→</span></span>
+        </span>
+      </span>
+    </button>
+  </div>
+
+  <!-- GymApp -->
+  <article class="panel" id="gymapp" hidden aria-labelledby="gymapp-h">
+    <div class="panel-top">
+      <div>
+        <span class="eyebrow">Mobile app · 2026</span>
+        <h2 id="gymapp-h">GymApp</h2>
+        <p>A multi-gym platform for <b>booking classes, checking in with a QR code, and finding gyms nearby</b>. Members, gym owners and the platform owner each get their own experience, all from one React Native codebase and a Supabase backend.</p>
+        <div class="chips"><span>React Native 0.86</span><span>Expo SDK 57</span><span>TypeScript</span><span>Supabase · Postgres</span><span>iOS · Android · Web</span></div>
+      </div>
+      <button class="close" data-close aria-label="Close GymApp case study">×</button>
+    </div>
+
+    <div class="cs">
+      <div class="cs-side"><span class="eyebrow">The product</span><h3>Three apps in one</h3></div>
+      <div class="cs-main">
+        <p>It started as a booking app for a single gym. By the third build session it had become a platform: any gym can sign up, the platform owner approves it, and members discover gyms on a map and request to join. Sign-in decides which experience loads.</p>
+        <div class="roles">
+          <div class="role"><span class="count">Member · 7 tabs</span><h4>Gym members</h4>
+            <ul><li>Book classes with live seat counts</li><li>Auto-join a waitlist when full</li><li>QR code for check-in</li><li>Find gyms on a map by distance</li><li>Workout guides with video</li><li>Private chat for their gym</li><li>Gym subscriptions <em>(in progress)</em></li></ul></div>
+          <div class="role"><span class="count">Gym owner · 7 tabs</span><h4>Gym admins</h4>
+            <ul><li>Schedule and remove classes</li><li>Scan member QR codes at the door</li><li>Approve or reject join requests</li><li>Build an exercise library</li><li>Edit gym details and pin location</li></ul></div>
+          <div class="role"><span class="count">Platform owner · 5 tabs</span><h4>Super admin</h4>
+            <ul><li>Live platform stats</li><li>Approve, suspend or reinstate gyms</li><li>Search every member</li><li>Import real gyms from Google Places</li><li>Preview the app as any role</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-side"><span class="eyebrow">Engineering</span><h3>Problems worth solving</h3></div>
+      <div class="cs-main">
+        <div class="deep">
+          <div><h4>A waitlist that runs itself</h4><p>When someone cancels, the next person in line should get the spot without anyone touching the app. I put that rule in the database as a Postgres trigger, so it holds no matter which client makes the change. A second trigger keeps seat counts in sync, and Supabase realtime pushes them to every open Classes screen.</p></div>
+<pre><span class="k">create function</span> promote_from_waitlist()
+<span class="k">returns trigger as</span> $$
+<span class="k">begin</span>
+  <span class="k">if</span> old.status = <span class="s">'confirmed'</span>
+     <span class="k">and</span> new.status = <span class="s">'cancelled'</span> <span class="k">then</span>
+    <span class="k">select</span> id <span class="k">into</span> next_in_line
+    <span class="k">from</span> bookings
+    <span class="k">where</span> class_id = new.class_id
+      <span class="k">and</span> status = <span class="s">'waitlisted'</span>
+    <span class="k">order by</span> created_at <span class="k">limit</span> 1;
+    <span class="c">-- first come, first served</span>
+    <span class="k">update</span> bookings <span class="k">set</span> status = <span class="s">'confirmed'</span>
+    <span class="k">where</span> id = next_in_line;
+  <span class="k">end if</span>;
+  <span class="k">return</span> new;
+<span class="k">end</span>; $$</pre>
+        </div>
+        <div class="deep">
+          <div><h4>Keeping each gym's data private</h4><p>Turning one gym into many meant every class, booking, exercise and chat message had to belong to a gym. I added a <code>gym_id</code> to each table and scoped every screen to the user's active membership. Row Level Security enforces access in the database, so members only read their own bookings and only staff create classes.</p></div>
+<pre><span class="k">create policy</span> <span class="s">"bookings_read_own"</span>
+  <span class="k">on</span> bookings <span class="k">for select</span>
+  <span class="k">using</span> (user_id = auth.uid());
+
+<span class="c">// client: scope chat to the member's gym</span>
+supabase.<span class="k">from</span>(<span class="s">'messages'</span>)
+  .select(<span class="s">'*'</span>)
+  .eq(<span class="s">'gym_id'</span>, membership.gym_id)</pre>
+        </div>
+        <div class="deep">
+          <div><h4>Finding the nearest gym</h4><p>The discover map sorts every active gym by real distance using the Haversine formula; gyms without coordinates drop to the bottom instead of breaking the sort. The super admin can bulk-import real gyms for a city, with phone numbers, opening hours and duplicate checks, using Google Places with a SerpAPI fallback.</p></div>
+<pre><span class="k">function</span> haversine(lat1, lon1, lat2, lon2) {
+  <span class="k">const</span> R = 6371; <span class="c">// km</span>
+  <span class="k">const</span> dLat = (lat2 - lat1) * Math.PI / 180;
+  <span class="k">const</span> dLon = (lon2 - lon1) * Math.PI / 180;
+  <span class="k">const</span> a = Math.sin(dLat / 2) ** 2
+    + Math.cos(lat1 * Math.PI / 180)
+    * Math.cos(lat2 * Math.PI / 180)
+    * Math.sin(dLon / 2) ** 2;
+  <span class="k">return</span> R * 2 * Math.atan2(
+    Math.sqrt(a), Math.sqrt(1 - a));
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-side"><span class="eyebrow">Debugging</span><h3>Bugs I fixed</h3></div>
+      <div class="cs-main">
+        <div class="tbl"><table>
+          <thead><tr><th>Problem</th><th>Cause and fix</th></tr></thead>
+          <tbody>
+            <tr><td>Signup failed to create a profile</td><td>An RLS policy blocked the insert before the session existed. I moved profile creation into a database trigger (<code>handle_new_user</code>).</td></tr>
+            <tr><td>Duplicate profile rows</td><td>The trigger and the signup screen were both inserting. I removed the client insert so the trigger is the single source.</td></tr>
+            <tr><td>App stuck after login</td><td>A missing profile left the router with no role. I added a fallback that signs the user out cleanly.</td></tr>
+            <tr><td>App wouldn't open in Expo Go</td><td>The SDK version didn't match Expo Go. I aligned it, and have since upgraded to SDK 57.</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-side"><span class="eyebrow">Process</span><h3>How it was built</h3></div>
+      <div class="cs-main">
+        <p>I keep a build journal for every session: what shipped, what broke, and what's next.</p>
+        <ol class="timeline">
+          <li><span class="when">17 Jul 2026</span><span><b>Booking core</b><span class="d">Auth with roles, class schedule, booking and waitlist triggers, QR check-in, live seat counts.</span></span></li>
+          <li><span class="when">17 Jul 2026</span><span><b>Community and guides</b><span class="d">Realtime chat, exercise browser with video, workout plans, staff exercise library.</span></span></li>
+          <li><span class="when">17 Jul 2026</span><span><b>Multi-gym platform</b><span class="d">Gyms and memberships, super admin role, gym approval flow, discovery by distance, role preview.</span></span></li>
+          <li><span class="when">23 Jul 2026</span><span><b>Maps and data isolation</b><span class="d">Shared map component with markers and bottom sheet; every screen scoped to the user's gym.</span></span></li>
+          <li><span class="when">23 Jul 2026</span><span><b>Real gym data</b><span class="d">A gym import tool for the super admin, with selection and duplicate checks.</span></span></li>
+        </ol>
+        <p>I build with an AI pair programmer (Claude Code). I decide what to build and how the system fits together, test on real devices, and work through bugs as they come up.</p>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-side"><span class="eyebrow">Stack</span><h3>Tools</h3></div>
+      <div class="cs-main">
+        <div class="tiles">
+          <div><b>Expo + Expo Router</b><span>File-based routing with a route group per role</span></div>
+          <div><b>Supabase</b><span>Auth, Postgres, Row Level Security, realtime</span></div>
+          <div><b>Google Maps</b><span>Gym markers, map/list toggle, bottom sheet</span></div>
+          <div><b>expo-camera</b><span>QR scanning for front-desk check-in</span></div>
+          <div><b>expo-location</b><span>Distance sorting and pinning a gym's address</span></div>
+          <div><b>Google Places + SerpAPI</b><span>Bulk import of real gym listings</span></div>
+        </div>
+        <p class="muted" style="font-size:.9rem">10 database tables · 3 user roles · ~5,500 lines of TypeScript</p>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-side"><span class="eyebrow">Roadmap</span><h3>Up next</h3></div>
+      <div class="cs-main">
+        <ul class="next">
+          <li class="now">In progress: gym subscriptions paid in the app</li>
+          <li>Push alerts for waitlist promotion and class reminders</li>
+          <li>Real attendance stats and streaks</li>
+          <li>Password reset</li>
+          <li>Edit classes and view attendee lists</li>
+          <li>Staff announcements to members</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- Exopleen -->
+  <article class="panel" id="exopleen" hidden aria-labelledby="exopleen-h">
+    <div class="panel-top">
+      <div>
+        <span class="eyebrow">Web app + backend · Live since May 2026</span>
+        <h2 id="exopleen-h">Exopleen</h2>
+        <p>A private, installable web app that watches <b>about 700 Solana wallets in real time</b>, logs when they buy a new token, tracks its price for ten days, and pushes an alert at 2x, 5x or 10x. An AI agent scores every new token and learns from its own misses.</p>
+        <div class="chips"><span>React 19 · Vite PWA</span><span>Tailwind</span><span>Python · FastAPI</span><span>SQLite</span><span>Ubuntu · systemd</span><span>Vercel</span></div>
+      </div>
+      <button class="close" data-close aria-label="Close Exopleen case study">×</button>
+    </div>
+
+    <div class="cs">
+      <div class="cs-side"><span class="eyebrow">The system</span><h3>Six services, one app</h3></div>
+      <div class="cs-main">
+        <p>The frontend is a password-gated PWA on Vercel with owner and subscriber roles. Behind it, a cloud Linux server runs six long-lived services: the wallet tracker, a call tracker that checks prices every 3 seconds, a FastAPI backend, a Cloudflare tunnel, a watcher that keeps the tunnel address in sync, and a Telegram ingester for outside signals.</p>
+        <div class="tiles">
+          <div><b>Calls, Hits, Movers</b><span>Filterable call list, milestone board, volume movers</span></div>
+          <div><b>Token detail</b><span>Which wallets bought, trimmed or sold, plus the AI's thesis</span></div>
+          <div><b>Push notifications</b><span>Per-device alert preferences, history in IndexedDB</span></div>
+          <div><b>Admin tools</b><span>Inactive-wallet scanner, mute and restore, privacy blur</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-side"><span class="eyebrow">Engineering</span><h3>Problems worth solving</h3></div>
+      <div class="cs-main">
+        <div class="deep">
+          <div><h4>An AI scorer that learns from its misses</h4><p>Each new token gets a 0 to 10 score from an LLM agent that pulls market and safety data. Seven days later the system writes a postmortem. After every 20 postmortems, it takes the 100 worst misses (scored 6 or under, went on to 5x or more), asks the model what it overlooked, and adds those rules to every future scoring prompt.</p></div>
+<pre><span class="c"># the feedback loop</span>
+buy detected  -> score 0-10
++7 days       -> postmortem(score, outcome)
+every 20      -> top 100 false negatives
+                 (score <= 6, outcome >= 5x)
+              -> synthesise blind-spot rules
+              -> inject into next prompts</pre>
+        </div>
+        <div class="deep">
+          <div><h4>Filtering out fake pumps</h4><p>Some tokens showed 5,000x gains that were really wash trades: every milestone fired at the same instant. Real pumps climb gradually, so the tracker now suppresses an alert when more than 7 milestones trigger in one 3-second check, and logs it for review. It caught two fakes straight away.</p></div>
+<pre><span class="k">if</span> len(milestones_this_cycle) > <span class="s">7</span>:
+    <span class="c"># real pumps climb; wash trades teleport</span>
+    log(<span class="s">"[FakePump]"</span>, token)
+    <span class="k">continue</span>  <span class="c"># no alert sent</span></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-side"><span class="eyebrow">Operations</span><h3>Running it in production</h3></div>
+      <div class="cs-main">
+        <div class="tbl"><table>
+          <thead><tr><th>Incident</th><th>Cause and fix</th></tr></thead>
+          <tbody>
+            <tr><td>App offline for 5+ hours</td><td>The tunnel exited cleanly after a network drop, and the service only restarted on failure. I switched it to always restart and added a watcher that updates the backend address in Vercel Edge Config.</td></tr>
+            <tr><td>Tracker silently ran with zero wallets</td><td>A script saved the wallet file as a flat list, but the loader expected an object. I standardised the format and made the database the source of truth.</td></tr>
+            <tr><td>"Database is locked" across services</td><td>A crashed process left a stale SQLite journal. Restarting the dependent services rolled it back with no data loss.</td></tr>
+            <tr><td>Database growing past 470 MB</td><td>A monthly job now removes transactions older than 60 days and runs VACUUM. The first run took it to 261 MB.</td></tr>
+            <tr><td>Price checks throttled</td><td>When the price API rate-limits the tracker, users get a push warning that alerts may be delayed, at most once an hour.</td></tr>
+            <tr><td>Deploys interrupted users</td><td>New versions used to reload mid-session. Updates now wait until the app is in the background.</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Bracket/HQ -->
+  <article class="panel" id="brackethq" hidden aria-labelledby="brackethq-h">
+    <div class="panel-top">
+      <div>
+        <span class="eyebrow">Web app · 2026</span>
+        <h2 id="brackethq-h">Bracket/HQ</h2>
+        <p>A place to <b>host and play FC Mobile tournaments</b>. Organisers set up a bracket, players sign in with Google and join, and everyone watches results update live as matches are reported.</p>
+        <div class="chips"><span>Google sign-in</span><span>7-day sessions</span><span>Server-Sent Events</span><span>Built on Emergent</span></div>
+      </div>
+      <button class="close" data-close aria-label="Close Bracket/HQ case study">×</button>
+    </div>
+    <div class="cs">
+      <div class="cs-side"><span class="eyebrow">Product</span><h3>Landing page</h3></div>
+      <div class="cs-main">
+        <img class="shot" src="bracket.jpg" alt="Bracket/HQ landing page: 'Compete. Host. Dominate.' with stats for 4 formats, 32 max seats and live updates">
+      </div>
+    </div>
+    <div class="cs">
+      <div class="cs-side"><span class="eyebrow">Features</span><h3>Four ways to run a tournament</h3></div>
+      <div class="cs-main">
+        <div class="tiles">
+          <div><b>Single elimination</b><span>Lose once and you're out</span></div>
+          <div><b>Double elimination</b><span>A losers' bracket gives a second chance</span></div>
+          <div><b>Round robin</b><span>Everyone plays everyone</span></div>
+          <div><b>Group + knockout</b><span>Group stage feeding a knockout</span></div>
+        </div>
+        <p>Brackets take 4, 8, 16 or 32 players. Updates go out over Server-Sent Events, so every open screen shows a result as soon as it's reported, without a refresh. Sign-in uses Google with one account per player and a 7-day session.</p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="about" aria-labelledby="about-h">
+  <div style="display:flex;flex-direction:column;gap:20px">
+    <span class="eyebrow">Background</span>
+    <h2 id="about-h" style="font-size:clamp(1.9rem,3.5vw,2.6rem)">From operations to engineering</h2>
+    <p>Before software I ran recruitment, payroll and staff records as an HR officer for a state emergency service, and before that worked in school administration and taught primary school. That's why what I build is practical: booking and check-in for gyms, approval flows, and admin tools for whoever keeps the system running.</p>
+    <div class="extra">
+      <span class="eyebrow">Also</span>
+      <div class="chips" style="margin-top:0"><span>UI/UX basics</span><span>Video editing · CapCut, Canva</span><span>Cybersecurity (studying)</span></div>
+    </div>
+  </div>
+  <ol class="timeline">
+    <li><span class="when">2026 – now</span><span><b>Independent developer</b><span class="d">GymApp, Exopleen and Bracket/HQ. IBM Full Stack Software Developer and Google UX Design certificates completed; Google Cybersecurity certificate in progress.</span></span></li>
+    <li><span class="when">2021 – 2022</span><span><b>Human Resources Officer</b><span class="d">Lagos State Fire and Rescue Service. Recruitment, onboarding, payroll and personnel records.</span></span></li>
+    <li><span class="when">2015 – 2020</span><span><b>BSc Agronomy</b><span class="d">University of Ibadan. Department Sports Director; interfaculty football winner.</span></span></li>
+    <li><span class="when">2013 – 2015</span><span><b>Teacher, then office assistant</b><span class="d">Two Lagos-area schools. Lessons, then scheduling, payroll support and student records.</span></span></li>
+  </ol>
+</section>
+
+<footer>
+  <h2>Let's build something.</h2>
+  <div class="cta">
+    <a class="btn" href="mailto:osfawole27@gmail.com">Email me</a>
+    <a class="btn ghost" href="https://github.com/olamide8162" target="_blank" rel="noopener">GitHub ↗</a>
+    <span class="addr">osfawole27@gmail.com</span>
+  </div>
+  <span class="fine">Happy to demo any of these projects live.</span>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var cards=[].slice.call(document.querySelectorAll('.card'));
+  function show(id,scroll){
+    cards.forEach(function(c){
+      var on=c.dataset.target===id;
+      c.setAttribute('aria-expanded',on?'true':'false');
+      document.getElementById(c.dataset.target).hidden=!on;
+    });
+    if(id&&scroll){var p=document.getElementById(id);if(p)p.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});}
+  }
+  cards.forEach(function(c){
+    c.addEventListener('click',function(){
+      var open=c.getAttribute('aria-expanded')==='true';
+      show(open?null:c.dataset.target,!open);
+    });
+  });
+  document.querySelectorAll('[data-close]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var id=b.closest('.panel').id; show(null);
+      var c=document.getElementById('card-'+id); if(c){c.focus();c.scrollIntoView({block:'center'});}
+    });
+  });
+  function fromHash(){var h=location.hash.slice(1);if(h&&document.getElementById('card-'+h))show(h,true);}
+  fromHash(); window.addEventListener('hashchange',fromHash);
+})();
+</script>
+
+</body>
+</html>
