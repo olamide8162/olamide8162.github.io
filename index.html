@@ -16,13 +16,16 @@
 <style>
 /* Layout: a quiet gallery. Big name, three image-led project cards, case studies open in a panel beneath the grid. */
 :root{
-  --bg:#FAFAF8;
-  --surface:#FFFFFF;
-  --sunk:#F2F1EE;
-  --ink:#111214;
-  --ink-2:#5D6169;
-  --ink-3:#8D9199;
-  --line:#E6E5E1;
+  --bg:#FFF7EE;
+  --surface:rgba(255,255,255,.78);
+  --sunk:#FBEEE2;
+  --ink:#1B1433;
+  --ink-2:#574F6B;
+  --ink-3:#756D8A;
+  --line:rgba(27,20,51,.12);
+  --grad:linear-gradient(100deg,#E8590C 0%,#D6336C 55%,#7048E8 100%);
+  --g1:rgba(255,146,84,.34); --g2:rgba(45,190,170,.20); --g3:rgba(168,110,247,.22);
+  --dot:rgba(27,20,51,.12);
   --accent:#D9531E;
   --accent-soft:#D9531E14;
   --ok:#17834A;
@@ -35,20 +38,26 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     color-scheme:dark;
-    --bg:#0D0E10; --surface:#16181B; --sunk:#1C1E22; --ink:#F2F1EE; --ink-2:#A3A7AF; --ink-3:#757A83;
-    --line:#26292E; --accent:#FF7D4A; --accent-soft:#FF7D4A1A; --ok:#4ADE80;
+    --bg:#0A0E1F; --surface:rgba(23,28,56,.74); --sunk:#1B2143; --ink:#FBF4E8; --ink-2:#BCC0D6; --ink-3:#9499B5;
+    --grad:linear-gradient(100deg,#FFC163 0%,#FF7A4D 45%,#FF4D8D 100%);
+    --g1:rgba(255,107,53,.34); --g2:rgba(45,212,191,.22); --g3:rgba(168,85,247,.30);
+    --dot:rgba(255,255,255,.13);
+    --line:rgba(255,255,255,.12); --accent:#FF8A5B; --accent-soft:#FF8A5B1A; --ok:#5EEAB4;
     --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6);
     --shadow-lift:0 2px 4px rgba(0,0,0,.3),0 24px 48px -20px rgba(0,0,0,.8);
-    --code-bg:#0A0B0C;
+    --code-bg:#070A16;
   }
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --bg:#0D0E10; --surface:#16181B; --sunk:#1C1E22; --ink:#F2F1EE; --ink-2:#A3A7AF; --ink-3:#757A83;
-  --line:#26292E; --accent:#FF7D4A; --accent-soft:#FF7D4A1A; --ok:#4ADE80;
+  --bg:#0A0E1F; --surface:rgba(23,28,56,.74); --sunk:#1B2143; --ink:#FBF4E8; --ink-2:#BCC0D6; --ink-3:#9499B5;
+    --grad:linear-gradient(100deg,#FFC163 0%,#FF7A4D 45%,#FF4D8D 100%);
+    --g1:rgba(255,107,53,.34); --g2:rgba(45,212,191,.22); --g3:rgba(168,85,247,.30);
+    --dot:rgba(255,255,255,.13);
+  --line:rgba(255,255,255,.12); --accent:#FF8A5B; --accent-soft:#FF8A5B1A; --ok:#5EEAB4;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6);
   --shadow-lift:0 2px 4px rgba(0,0,0,.3),0 24px 48px -20px rgba(0,0,0,.8);
-  --code-bg:#0A0B0C;
+  --code-bg:#070A16;
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;
@@ -219,10 +228,89 @@ footer .fine{font-family:var(--mono);font-size:.75rem;color:var(--ink-3)}
   .next{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---- Atmosphere: a slow aurora behind everything, plus a faint dot field ---- */
+.sky{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.sky i{position:absolute;display:block;width:70vmax;height:70vmax;border-radius:50%}
+.sky i:nth-child(1){top:-30vmax;right:-18vmax;background:radial-gradient(closest-side,var(--g1),transparent);animation:drift1 26s ease-in-out infinite alternate}
+.sky i:nth-child(2){top:18vh;left:-30vmax;background:radial-gradient(closest-side,var(--g2),transparent);animation:drift2 32s ease-in-out infinite alternate}
+.sky i:nth-child(3){bottom:-36vmax;right:4vw;background:radial-gradient(closest-side,var(--g3),transparent);animation:drift3 38s ease-in-out infinite alternate}
+.sky::after{content:"";position:absolute;inset:0;background-image:radial-gradient(var(--dot) 1px,transparent 1.4px);background-size:28px 28px;-webkit-mask-image:radial-gradient(90% 70% at 70% 0%,#000,transparent);mask-image:radial-gradient(90% 70% at 70% 0%,#000,transparent)}
+@keyframes drift1{to{transform:translate(-8vmax,10vmax) scale(1.1)}}
+@keyframes drift2{to{transform:translate(10vmax,-6vmax) scale(.92)}}
+@keyframes drift3{to{transform:translate(-10vmax,-8vmax) scale(1.12)}}
+
+/* ---- Hero ---- */
+.hero .eyebrow{color:var(--accent)}
+.hero h1 span{background:var(--grad);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 9s ease-in-out infinite alternate}
+@keyframes shimmer{to{background-position:100% 0}}
+.btn{background:var(--grad);border-color:transparent;color:#1A0E08;font-weight:600}
+.btn:hover{box-shadow:0 10px 30px -10px var(--g1)}
+.btn.ghost{background:var(--surface);border-color:var(--line);color:var(--ink);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.stats div{padding:20px;border:1px solid var(--line);border-radius:16px;background:var(--surface);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.stats dt{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;width:fit-content}
+
+/* ---- Tech ticker ---- */
+.ticker{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.ticker-track{display:flex;width:max-content;animation:slide 36s linear infinite}
+.ticker ul{display:flex;gap:36px;margin:0;padding:0 18px;list-style:none;font-family:var(--mono);font-size:.82rem;color:var(--ink-2);white-space:nowrap}
+.ticker li{display:flex;align-items:center;gap:36px}
+.ticker li::after{content:"✦";color:var(--accent);font-size:.7rem}
+.ticker:hover .ticker-track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---- Section headings ---- */
+.head h2::after,#about-h::after{content:"";display:block;width:56px;height:4px;margin-top:14px;border-radius:4px;background:var(--grad)}
+
+/* ---- Project cards: gradient edge, and a glow that follows the cursor ---- */
+#card-gymapp{--c:255,122,77}
+#card-exopleen{--c:52,211,153}
+#card-brackethq{--c:163,230,53}
+.card{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(var(--surface),var(--surface)) padding-box,linear-gradient(150deg,rgba(var(--c),.65),var(--line) 45%,rgba(var(--c),.25)) border-box;border-color:transparent;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.card::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .3s ease;background:radial-gradient(320px circle at var(--mx,50%) var(--my,0%),rgba(var(--c),.24),transparent 70%)}
+.card:hover::before,.card:focus-visible::before{opacity:1}
+.card:hover{box-shadow:0 26px 60px -24px rgba(var(--c),.55)}
+.card[aria-expanded="true"]{border-color:transparent;box-shadow:0 0 0 2px rgba(var(--c),.8),0 26px 60px -24px rgba(var(--c),.55)}
+.card .visual img,.card .phone,.card .ex-card{transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.card:hover .visual img{transform:scale(1.04)}
+.card:hover .ex-card{transform:scale(1.03)}
+.card:hover .phone{transform:translateY(10%) rotate(-2deg)}
+.tag{background:rgba(var(--c),.14);color:var(--ink)}
+.more{color:rgb(var(--c))}
+:root:not([data-theme="dark"]) .more{color:var(--ink)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .more{color:rgb(var(--c))}}
+
+/* ---- Panels and background section ---- */
+.panel,.about{-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.about{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:48px}
+.timeline .when{color:var(--accent)}
+
+/* ---- Closing panel ---- */
+footer{position:relative;overflow:hidden;padding:64px 56px;border:0;border-radius:28px;color:#FFF8EF;background:radial-gradient(90% 140% at 100% 0%,#7A2BD0 0%,transparent 60%),linear-gradient(120deg,#B93A14 0%,#A32258 55%,#34207F 100%)}
+footer h2{font-size:clamp(2.2rem,6vw,4.2rem)}
+footer .btn{background:#FFF8EF;color:#2A1420}
+footer .btn.ghost{background:transparent;border-color:rgba(255,248,239,.5);color:#FFF8EF}
+footer .cta .addr,footer .fine{color:#FFE9D6}
+
+/* ---- Scroll-in (only hidden once JS confirms it can reveal them again) ---- */
+.js .reveal:not(.in){opacity:0}
+.reveal.in{animation:fade-up .7s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:var(--d,0s)}
+@keyframes fade-up{from{opacity:0;transform:translateY(24px)}}
+
+@media (max-width:640px){
+  .stats{gap:10px}
+  .stats div{padding:16px 18px}
+  .about{padding:28px 20px}
+  footer{padding:40px 24px}
+}
+@media (prefers-reduced-motion:reduce){.ticker-track{width:auto}.ticker ul:last-child{display:none}.ticker ul{flex-wrap:wrap;gap:8px 20px;white-space:normal}.ticker li{gap:20px}}
+@media print{.sky,.ticker{display:none}.js .reveal:not(.in){opacity:1}}
 </style>
 </head>
 <body>
 
+
+<div class="sky" aria-hidden="true"><i></i><i></i><i></i></div>
 
 <div class="wrap">
 
@@ -240,6 +328,7 @@ footer .fine{font-family:var(--mono);font-size:.75rem;color:var(--ink-3)}
     <div><dt>~700</dt><dd>Wallets tracked live, every 3 seconds</dd></div>
     <div><dt>6</dt><dd>Services I run in production</dd></div>
   </dl>
+  <div class="ticker" aria-label="Tools I work with"><div class="ticker-track"><ul><li>React Native</li><li>TypeScript</li><li>Expo</li><li>React</li><li>Python</li><li>FastAPI</li><li>Supabase</li><li>PostgreSQL</li><li>SQLite</li><li>Tailwind CSS</li><li>Linux</li><li>Vercel</li><li>UI/UX</li><li>Video editing</li></ul><ul aria-hidden="true"><li>React Native</li><li>TypeScript</li><li>Expo</li><li>React</li><li>Python</li><li>FastAPI</li><li>Supabase</li><li>PostgreSQL</li><li>SQLite</li><li>Tailwind CSS</li><li>Linux</li><li>Vercel</li><li>UI/UX</li><li>Video editing</li></ul></div></div>
 </header>
 
 <section aria-labelledby="work-h">
@@ -607,6 +696,29 @@ every 20      -> top 100 false negatives
   });
   function fromHash(){var h=location.hash.slice(1);if(h&&document.getElementById('card-'+h))show(h,true);}
   fromHash(); window.addEventListener('hashchange',fromHash);
+})();
+
+(function(){
+  // cursor-following glow on the project cards
+  document.querySelectorAll('.card').forEach(function(c){
+    c.addEventListener('pointermove',function(e){
+      var r=c.getBoundingClientRect();
+      c.style.setProperty('--mx',(e.clientX-r.left)+'px');
+      c.style.setProperty('--my',(e.clientY-r.top)+'px');
+    });
+  });
+  // fade sections in as they arrive
+  if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var els=document.querySelectorAll('.head,.card,.about,footer');
+  document.documentElement.classList.add('js');
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{rootMargin:'0px 0px -6% 0px'});
+  els.forEach(function(el,i){
+    el.classList.add('reveal');
+    if(el.classList.contains('card'))el.style.setProperty('--d',(i%3)*.08+'s');
+    io.observe(el);
+  });
 })();
 </script>
 
